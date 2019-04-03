@@ -23,7 +23,7 @@ class StartScreen extends Phaser.Scene {
    update(totalTime, deltaTime){ // optional use of time, weren't using these
     // 0 open finger, 1 closed
     // 0:1:1:0-
-    handValues = this.serialMsg.split(':');
+    const handValues = this.serialMsg.split(':');
     if(handValues[0] == 1 && handValues[1] == 1){ // all fingers are closed
         this.overlay.classList.add('hidden');
         this.scene.start('MainScene');
