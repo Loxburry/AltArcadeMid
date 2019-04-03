@@ -3,7 +3,7 @@ const serialRead = require('../serialRead');
 
 class StartScreen extends Phaser.Scene {
    constructor() { 
-    super('StarScreen'); 
+    super('Startscreen'); 
     serialRead.addListener(this.onSerialMessage.bind(this));
     // takes the below function and attaches it to the serial port
    }
@@ -16,7 +16,7 @@ class StartScreen extends Phaser.Scene {
    }
 
    onSerialMessage(msg){
-       console.log(msg); // print out message
+       //console.log(msg); // print out message
        this.serialMsg = msg; // storing serialMsg to access it in the update function
    }
 

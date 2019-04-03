@@ -8,7 +8,7 @@ class GameOver extends Phaser.Scene {
    }
    
    create(){ // HTML user interface, generate array of bullets
-    this.overlay = document.querySelector('#game-over');
+    this.overlay = document.querySelector('#game-lose');
     // Ever time this scene begins
     this.overlay.classList.remove('hidden'); // initialize the title prompt as not hidden
     // removes the hidden class from game-screen

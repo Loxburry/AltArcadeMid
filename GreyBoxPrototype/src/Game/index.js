@@ -2,6 +2,7 @@
 const Phaser = require('phaser');
 const StartScreen = require('./Scenes/Startscreen');
 const MainScene = require('./Scenes/MainScene');
+const GameWin = require('./Scenes/GameWin');
 const GameOver = require('./Scenes/GameOver');
 const serialRead = require('./serialRead.js');
 
@@ -9,7 +10,7 @@ const phaserConfig = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
-  scene: [StartScreen, MainScene, GameOver]
+  scene: [StartScreen, MainScene, GameOver, GameWin]
 };
 
 
