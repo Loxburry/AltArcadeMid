@@ -26,10 +26,10 @@ void loop(){
   //  turn on the LED
 
   //debugging code
-  Serial.print(readCapacitivePin(capPinInd));
-  Serial.print('-');
-  Serial.print(readCapacitivePin(capPinMid));
-  Serial.print('-');
+//  Serial.print(readCapacitivePin(capPinInd));
+//  Serial.print('-');
+//  Serial.print(readCapacitivePin(capPinMid));
+//  Serial.print('-');
   
   //code for index finger
   if (readCapacitivePin(capPinInd) > touchedCutoff) {
@@ -68,7 +68,7 @@ void loop(){
 //    
 //  }
   
-  Serial.println("-");
+  Serial.print("-");
   // Every 500 ms, print the value of the capacitive sensor
 //  if ( (millis() % 500) == 0){
 //    Serial.print("Capacitive Sensor reads: ");

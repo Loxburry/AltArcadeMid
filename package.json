@@ -1,0 +1,19 @@
+{
+  "name": "midterm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron ./src",
+    "install": "electron-rebuild",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BriskBeetle",
+  "license": "MIT",
+  "dependencies": {
+    "electron": "^4.0.5",
+    "electron-rebuild": "^1.8.4",
+    "phaser": "^3.16.2",
+    "serialport": "^7.1.4"
+  }
+}
