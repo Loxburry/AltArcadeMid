@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Devil Makes Work For Idle Hands</title>
+
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        overflow: hidden;
+      }
+      #start-screen{ 
+        /* Changes the h1 text to mesh on top */
+        position: absolute;
+        color: white;
+        left: calc(50vw - 110px);
+        top: calc(50vw - 200px);
+      }
+      #demon{ 
+        /* Changes the h1 text to mesh on top */
+        position: absolute;
+        left: calc(50vw - 100px);
+        top: calc(40vw - 200px);
+      }
+      #game-win{
+        position: absolute;
+        color: white;
+        left: calc(50vw - 130px);
+        top: calc(50vw - 200px);
+      }
+      #game-lose{
+        position: absolute;
+        color: red;
+        left: calc(50vw - 130px);
+        top: calc(50vw - 200px);
+      }
+      .hidden{
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="start-screen" class="hidden">
+      <center>
+      <h1>Gesticulation</h1>
+      <h2>Close Fingers to Begin</h2>
+      </center>
+    </div>
+    <div id="demon" class ="hidden">
+      <img src="./yerBoi.jpg" height=200 width = 200>
+    </div>
+    <div id="game-win" class="hidden">
+      <center>
+      <h1>You Win!</h1>
+      <h2>Close Fingers to Restart!</h2>
+    </center>
+    </div>
+    <div id="game-lose" class="hidden">
+      <center>
+      <h1>You Lose!</h1>
+      <h2>Close Fingers to Restart!</h2>
+      </center>
+    </div>
+  </body>
+<!-- change the src value for each hand prompt and demon image with .js -->
+<!-- hide and show elements -->
+  <script>
+    const game = require('./Game');
+    window.onload = () => { game.init(); };
+  </script>
+
+</html>
