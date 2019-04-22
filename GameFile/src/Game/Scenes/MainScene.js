@@ -17,6 +17,14 @@ class MainScene extends Phaser.Scene {
     super('MainScene'); 
     serialRead.addListener(this.onSerialMessage.bind(this));
    }
+   preload(){
+    this.preload.audio('index',['../../Low.mp3']);
+    this.preload.audio('middle',['../../Med_Low.mp3']);
+    this.preload.audio('ring',['../../Med_High.mp3']);
+    this.preload.audio('pinkie',['../../High.mp3']);
+    this.preload.audio('candle',['../../ignite.mp3']);
+    // add bg music 
+    }
    create(){ 
     success = 0;
     timeLimit = 350;
