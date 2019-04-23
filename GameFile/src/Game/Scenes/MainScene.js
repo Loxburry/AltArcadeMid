@@ -100,19 +100,19 @@ onSerialMessage(msg){
     // success is the index/position of the handPrompt
     if (success !== 4) {
 
-      if(this.handPromts[success].position == 0 && handValues[0] == 0 && handValues[1] == 0){ // position 0 | all fingers open
+      if(this.handPromts[success].position == 0 && handValues[0] == 0 && handValues[1] == 0 && handValues[2] == 0 && handValues[3] == 0){ // position 0 | all fingers open
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
         success++;
-      } else if(this.handPromts[success].position == 1 && handValues[0] == 1 && handValues[1] == 0){ // position 1 | index finger down
+      } else if(this.handPromts[success].position == 1 && handValues[0] == 1 && handValues[1] == 0 && handValues[2] == 0 && handValues[3] == 0){ // position 1 | index finger down
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
         success++;
-      } else if(this.handPromts[success].position == 2 && handValues[0] == 0 && handValues[1] == 1){ // position 2 | middle finger down
+      } else if(this.handPromts[success].position == 2 && handValues[0] == 0 && handValues[1] == 1 && handValues[2] == 0 && handValues[3] == 0){ // position 2 | middle finger down
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
         success++;
-      } else if(this.handPromts[success].position == 3 && handValues[0] == 1 && handValues[1] == 1){ // position 3 | index + middle finger down
+      } else if(this.handPromts[success].position == 3 && handValues[0] == 1 && handValues[1] == 1 && handValues[2] == 0 && handValues[3] == 0){ // position 3 | index + middle finger down
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
         success++;

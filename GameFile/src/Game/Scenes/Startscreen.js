@@ -35,7 +35,7 @@ class StartScreen extends Phaser.Scene {
     // 0 open finger, 1 closed
     // 0:1:1:0-
     const handValues = this.serialMsg.split(':');
-    if(handValues[0] == 1 && handValues[1] == 1){ // all fingers are closed
+    if(handValues[0] == 1 && handValues[1] == 1 && handValues[2] == 1 && handValues[3] == 1){ // all fingers are closed
         this.sound.play('start', { volume: 0.5 });// set volume between 0 and 1
         this.overlay.classList.add('hidden');
         this.scene.start('MainScene');

@@ -22,7 +22,7 @@ class GameWin extends Phaser.Scene {
    // TO DO: change key press to finger position
 
    const handValues = this.serialMsg.split(':');
-    if(handValues[0] == 1 && handValues[1] == 1){ // all fingers are closed
+    if(handValues[0] == 1 && handValues[1] == 1 && handValues[2] == 1 && handValues[3] == 1){ // all fingers are closed
         this.overlay.classList.add('hidden');
         // make it hidden
         this.scene.start('Startscreen'); // transition to start scene
