@@ -13,8 +13,7 @@ class StartScreen extends Phaser.Scene {
        this.preload.audio('middle',['../../Med_Low.mp3']);
        this.preload.audio('ring',['../../Med_High.mp3']);
        this.preload.audio('pinkie',['../../High.mp3']);
-       // add bg music later
- //    this.preload.audio('soundtrack',['../../filename.mp3']);
+       this.preload.audio('titleTheme',['../../titleTheme.mp3']);
    }
    create(){ // HTML user interface, generate array of bullets
     this.overlay = document.querySelector('#start-screen');
@@ -23,6 +22,7 @@ class StartScreen extends Phaser.Scene {
     // removes the hidden class from start-screen
     this.serialMsg = ''; 
     // looping bg music
+    this.sound.play('titleTheme', {loop: true, volume: 0.8});
    // this.sound.play('soundtrack', { loop: true });
    }
 
