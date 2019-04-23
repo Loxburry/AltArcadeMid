@@ -9,7 +9,8 @@ const listeners = [];
 function openPort(testFunction, delimiter) {
   if (!port && !parser) {
     SerialPort.list()
-    // find the good port
+    // log all the ports
+    // .then(p => { console.log(p); return p; })
     .then(ports => ports.find(testFunction))
     .then(portInfo => {
       port = new SerialPort(portInfo.comName);

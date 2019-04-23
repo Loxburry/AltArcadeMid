@@ -15,7 +15,7 @@ class GameOver extends Phaser.Scene {
    }
 
    onSerialMessage(msg){
-    console.log(msg); // print out message
+    // console.log(msg); // print out message
     this.serialMsg = msg; // storing serialMsg to access it in the update function
     }
 

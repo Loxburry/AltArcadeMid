@@ -18,11 +18,11 @@ class MainScene extends Phaser.Scene {
     serialRead.addListener(this.onSerialMessage.bind(this));
    }
    preload(){
-    this.preload.audio('index',['../../Low.mp3']);
-    this.preload.audio('middle',['../../Med_Low.mp3']);
-    this.preload.audio('ring',['../../Med_High.mp3']);
-    this.preload.audio('pinkie',['../../High.mp3']);
-    this.preload.audio('candle',['../../ignite.mp3']);
+    this.load.audio('index',['./Low.mp3']);
+    this.load.audio('middle',['./Med_Low.mp3']);
+    this.load.audio('ring',['./Med_High.mp3']);
+    this.load.audio('pinkie',['./High.mp3']);
+    this.load.audio('candle',['./ignite.mp3']);
     // add bg music 
     }
    create(){ 
@@ -36,6 +36,7 @@ class MainScene extends Phaser.Scene {
         lineStyle: { width: 4, color: 0xffffff },
       });
     this.overlay = document.querySelector('#demon');
+    console.log('yo');
       // Ever time this scene begins
     this.overlay.classList.remove('hidden');
     this.counter = 0;
@@ -103,18 +104,23 @@ onSerialMessage(msg){
       if(this.handPromts[success].position == 0 && handValues[0] == 0 && handValues[1] == 0 && handValues[2] == 0 && handValues[3] == 0){ // position 0 | all fingers open
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
+        this.sound.play('candle', {volume: 0.8});
+        // make candel appear later
         success++;
       } else if(this.handPromts[success].position == 1 && handValues[0] == 1 && handValues[1] == 0 && handValues[2] == 0 && handValues[3] == 0){ // position 1 | index finger down
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
+        this.sound.play('candle', {volume: 0.8});
         success++;
       } else if(this.handPromts[success].position == 2 && handValues[0] == 0 && handValues[1] == 1 && handValues[2] == 0 && handValues[3] == 0){ // position 2 | middle finger down
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
+        this.sound.play('candle', {volume: 1});
         success++;
       } else if(this.handPromts[success].position == 3 && handValues[0] == 1 && handValues[1] == 1 && handValues[2] == 0 && handValues[3] == 0){ // position 3 | index + middle finger down
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
+        this.sound.play('candle', {volume: 1});
         success++;
       }
     }

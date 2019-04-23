@@ -36,7 +36,8 @@ phaserConfig.scene = {
 // Exported Module so game can be initialized elseware
 const GameManager = {
   init: () => {
-    serialRead.openPort(p => /Arduino/.test(p.manufacturer), '-'); // initilize connection with arduino
+    // compare with gitHub code
+    serialRead.openPort(p => p.serialNumber == "557353233353518091A2", '-'); // initilize connection with arduino
     game = new Phaser.Game(phaserConfig);
   },
 };
