@@ -37,7 +37,10 @@ phaserConfig.scene = {
 const GameManager = {
   init: () => {
     // compare with gitHub code
-    serialRead.openPort(p => p.serialNumber == "557353233353518091A2", '-'); // initilize connection with arduino
+    serialRead.openPort(p => p.serialNumber == "5&350590a7&0&5", '-'); // initilize connection with arduino
+    // Kenny's BlackBoard serial number: 5&350590a7&0&5
+                 // Glove serial number: 5&350590a7&0&5
+          // Willies' Uno serial number: 557353233353518091A2
     game = new Phaser.Game(phaserConfig);
   },
 };

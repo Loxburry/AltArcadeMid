@@ -22,9 +22,50 @@ class GameWin extends Phaser.Scene {
    // TO DO: change key press to finger position
 
    const handValues = this.serialMsg.split(':');
+   // finger down sound
+   if(handValues[0] == 1 && !this.wasIndexLastFrameDown){
+    this.sound.play('index', {volume: 0.34});
+    console.log("playing sound");
+}
+if(handValues[1] == 1 && !this.wasMiddleLastFrameDown){ 
+    this.sound.play('middle', {volume: 0.34});
+}    
+if(handValues[2] == 1 && !this.wasRingLastFrameDown){ 
+    this.sound.play('ring', {volume: 0.34});
+}    
+if(handValues[3] == 1 && !this.wasPinkyLastFameDown){
+    this.sound.play('pinkie', {volume: 0.34});
+}
+// update for last frame down
+if(handValues[0] == 1){
+    this.wasIndexLastFrameDown = true;
+    console.log("finger is down");
+}
+else{
+    this.wasIndexLastFrameDown = false;
+    console.log("finger is up");
+}
+
+if(handValues[1] == 1){
+    this.wasMiddleLastFrameDown = true;
+}
+else{
+    this.wasMiddleLastFrameDown = false;
+}
+if(handValues[2] == 1){
+    this.wasRingLastFrameDown = true;
+}
+else{
+    this.wasRingLastFrameDown = false;
+}
+if(handValues[3] == 1){
+    this.wasPinkyLastFameDown = true;
+}
+else{
+    this.wasPinkyLastFameDown = false;
+}
     if(handValues[0] == 1 && handValues[1] == 1 && handValues[2] == 1 && handValues[3] == 1){ // all fingers are closed
         this.overlay.classList.add('hidden');
-        // make it hidden
         this.scene.start('Startscreen'); // transition to start scene
     }
    // Hi Willie! From Me~ Kenny

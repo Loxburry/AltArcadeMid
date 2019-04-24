@@ -12,56 +12,99 @@
 
       body {
         overflow: hidden;
+        background: black;
       }
       #start-screen{ 
         /* Changes the h1 text to mesh on top */
         position: absolute;
-        color: white;
-        left: calc(50vw - 110px);
-        top: calc(50vw - 200px);
+        color: whitesmoke;
+        left: calc(50vw - 115px);
+        /*  %vw : view width of window
+            %vh : view height of window */
+        top: 55vh; 
       }
       #demon{ 
-        /* Changes the h1 text to mesh on top */
         position: absolute;
         left: calc(50vw - 100px);
-        top: calc(40vw - 200px);
+        top: 23vh;
+        z-index: 14;
       }
+      #demon2{
+        position: absolute;
+        left: calc(50vw - 100px);
+        top: 23vh;
+        z-index: 14;
+      }
+      #candel0{
+        position: absolute;
+        left: calc(50vw - 30px);
+        top: 47vh;
+        z-index: 15;
+      }
+      #candel1{
+        position: absolute;
+        left: calc(50vw - 150px);
+        top: 37vh;
+      }
+      #candel2{
+        position: absolute;
+        left: calc(50vw + 90px);
+        top: 37vh;
+      }
+      #candel3{
+        position: absolute;
+        left: calc(50vw - 90px);
+        top: 17vh;
+        z-index: 0;
+      }
+      #candel4{
+        position: absolute;
+        left: calc(50vw + 30px);
+        top: 17vh;
+        z-index: 1;
+      } 
       #game-win{
         position: absolute;
-        color: white;
+        color: whitesmoke;
         left: calc(50vw - 130px);
-        top: calc(50vw - 200px);
+        top: 55vh;
       }
       #game-lose{
         position: absolute;
         color: red;
         left: calc(50vw - 130px);
-        top: calc(50vw - 200px);
+        top: 55vh;
       }
       #prompt0{
         position: absolute;
-        top: 450px;
-        left: 250px;
+        top: 65vh;
+        left: 36.5vw;
       }
+      /* 6.833 */
       #prompt1{
         position: absolute;
-        top: 450px;
-        left: 350px;
+        top: 65vh;
+        left: 43.33vw;
       }
       #prompt2{
         position: absolute;
-        top: 450px;
-        left: 450px;
+        top: 65vh;
+        left: 50.166vw;
       }
       #prompt3{
         position: absolute;
-        top: 450px;
-        left: 550px;
+        top: 65vh;
+        left: 56.5vw;
       }
       .hidden{
         display: none;
       }
-
+       .shake-enabled, canvas{
+        position: absolute;
+        left: calc(50vw - 400px);
+        top: calc(50vh - 300px);
+        z-index: -1;
+      } 
     </style>
   </head>
 
@@ -69,36 +112,54 @@
     <div id="start-screen" class="hidden">
       <center>
       <h1 style = "font-family: 'Nightmare Pills', 'Times New Roman', Times, serif">
-        Are you ready?
+        Are You Ready?
       </h1>
-      <h2 style = "font-family: 'Nightmare Pills', 'Times New Roman', Times, serif">Close Fingers to Begin</h2>
+      <h2 style = "font-family: 'Nightmare Pills', 'Times New Roman', Times, serif">Point to Begin</h2>
       </center>
     </div>
     <div id="demon" class ="hidden">
-      <img src="./yerBoi.jpg" height=200 width = 200>
+      <img src="./img/yerBoi.png" height=200 width = 200>
+    </div>
+    <div id="demon2" class = "hidden">
+      <img src = "./img/mellow.png" height = 250 width = 250>
+    </div>
+    <div id="candel0" class = "hidden">
+      <img src="./img/candle.png" height=80 width= 60>
+    </div>
+    <div id="candel1" class = "hidden">
+      <img src="./img/candle.png" height=80 width= 60>
+    </div>
+    <div id="candel2" class = "hidden">
+      <img src="./img/candle.png" height=80 width= 60>
+    </div>
+    <div id="candel3" class = "hidden">
+      <img src="./img/candle.png" height=80 width= 60>
+    </div>
+    <div id="candel4" class = "hidden">
+      <img src="./img/candle.png" height=80 width= 60>
     </div>
     <div id = "prompt0" class = "hidden">
-      <img src="./open.png" height = 45 width = 50>
+      <img src="./img/1000.png" height = 75 width = 110>
     </div>
     <div id = "prompt1" class = "hidden">
-      <img src="./open.png" height = 45 width = 45>
+      <img src="./img/1000.png" height = 75 width = 110>
     </div>
     <div id = "prompt2" class = "hidden">
-      <img src="./open.png" height = 45 width = 45>
+      <img src="./img/1000.png" height = 75 width = 110>
     </div>
     <div id = "prompt3" class = "hidden">
-      <img src="./open.png" height = 45 width = 45>
+      <img src="./img/1000.png" height = 75 width = 110>
     </div>
     <div id="game-win" class="hidden">
       <center>
-      <h1>You Win!</h1>
-      <h2 style = "font-family: 'Nightmare Pills', 'Times New Roman', Times, serif">Close Fingers to Restart!</h2>
+      <h1 style = "font-family: 'Nightmare Pills', 'Times New Roman', Times, serif">You Win</h1>
+      <h2 style = "font-family: 'Nightmare Pills', 'Times New Roman', Times, serif">Close Fingers to Restart</h2>
     </center>
     </div>
     <div id="game-lose" class="hidden">
       <center>
-      <h1 style = "font-family: 'Nightmare Pills', 'Times New Roman', Times, serif">You Lose!</h1>
-      <h2 style = "font-family: 'Nightmare Pills', 'Times New Roman', Times, serif">Close Fingers to Restart!</h2>
+      <h1 style = "font-family: 'Nightmare Pills', 'Times New Roman', Times, serif">You Lose</h1>
+      <h2 style = "font-family: 'Nightmare Pills', 'Times New Roman', Times, serif">Close Fingers to Restart</h2>
       </center>
     </div>
   </body>
