@@ -28,6 +28,7 @@ class MainScene extends Phaser.Scene {
     // add bg music 
     }
    create(){ 
+    defeated = 0;
     success = 0;
     candel = 0;
     timeLimit = 350;
@@ -38,7 +39,7 @@ class MainScene extends Phaser.Scene {
         fillStyle: { color: 0xeeeeee },
         lineStyle: { width: 4, color: 0xffffff },
       });
-    this.overlay = document.querySelector('#demon');
+    this.overlay = document.querySelector('#demon0');
     // Ever time this scene begins
     this.overlay.classList.remove('hidden');
     this.handPromts = []; // an array of objects we can call from later
@@ -184,6 +185,36 @@ onSerialMessage(msg){
     this.graphics.clear();
     if(over == false){
       this.graphics.save();
+    if(defeated == 0){
+        this.graphics = this.add.graphics({
+          fillStyle: { color: 0xD9CD23},
+        });
+      }
+      if(defeated == 1){
+        this.graphics = this.add.graphics({
+          fillStyle: { color: 0x8FDFBC},
+      });
+    }
+    if(defeated == 2){
+        this.graphics = this.add.graphics({
+          fillStyle: { color: 0xFF9D2E},
+      });
+    }
+      if(defeated == 3){
+        this.graphics = this.add.graphics({
+          fillStyle: { color: 0xE75D5D},
+      });
+      }
+      if(defeated == 4){
+        this.graphics = this.add.graphics({
+          fillStyle: { color: 0xAF79D5},
+      });
+      }
+      if(defeated == 5){
+        this.graphics = this.add.graphics({
+          fillStyle: { color: 0xFE0002},
+      });
+      }
       this.graphics.fillRect(575, 390, -timer, 20);
       this.graphics.strokeRect(575, 390, -350, 20);
       this.graphics.restore();
@@ -208,7 +239,7 @@ onSerialMessage(msg){
       // Ever time this scene begins
       //this.overlay.classList.remove('hidden');
       over = true;
-      this.overlay.classList.add('hidden');
+      //this.overlay.classList.add('hidden');
       for(this.i = 0; this.i < 5; this.i++){
         document.getElementById("candel"+this.i).classList.add('hidden');
       }
@@ -217,7 +248,7 @@ onSerialMessage(msg){
 
     this.handPromts.forEach((b) => { b.draw(this.graphics); });
     if(success == 4){ // ignite a candel
-      candel++; // change for debuging
+      candel=5; // change for debugging
       if(candel == 1){
         this.sound.play('candle', {volume: 0.8});
         this.c2 = document.querySelector('#candel2');
@@ -259,8 +290,9 @@ onSerialMessage(msg){
         this.c1.classList.remove('hidden');
         over = true;
         // figure out delay function
+        // hurt animation
         // figure out screen shake
-        defeated++;
+        defeated = 6; // change for debugging
         over = false;
         timer = 300;
         candel = 0;
@@ -269,27 +301,23 @@ onSerialMessage(msg){
           document.getElementById("candel"+this.i).classList.add('hidden');
         }
         this.overlay.classList.add('hidden');
-        this.overlay = document.querySelector('#demon2');
-        // Ever time this scene begins
-        this.overlay.classList.remove('hidden');
-        for(this.i = 0; this.i < 4; this.i++){
-          document.getElementById("prompt"+this.i).classList.remove('hidden');
-        }
+        
+        if(defeated !=6 ){
+          this.overlay = document.querySelector('#demon'+defeated);
+          this.overlay.classList.remove('hidden');
+          for(this.i = 0; this.i < 4; this.i++){
+            document.getElementById("prompt"+this.i).classList.remove('hidden');
+          }
+        }        
       }
-      if(defeated == 2){
+      if(defeated == 6){
         over = true;
         this.overlay.classList.add('hidden');
         for(this.i = 0; this.i < 5; this.i++){
-          document.getElementById("candel"+this.i).classList.add('hidden');
+          document.getElementById("candel"+this.i).classList.add('hidden'); // make candels disapear
         }
-        document.getElementById("prompt0").classList.add('hidden');
-        document.getElementById("prompt1").classList.add('hidden');
-        document.getElementById("prompt2").classList.add('hidden');
-        document.getElementById("prompt3").classList.add('hidden');
         this.scene.start('GameWin');
       }
-
-
     }
 
      // finger down sound
