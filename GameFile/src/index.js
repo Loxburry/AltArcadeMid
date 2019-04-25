@@ -16,7 +16,7 @@ function createWindow() {
   // Create a browser window
   mainWindow = new BrowserWindow({ width: 800, height: 600});
   // removes File, Edit, etc. header and disables ctrl + r
-  //mainWindow.setMenu(null);
+  mainWindow.setMenu(null);
 
   // load the index.html file
   mainWindow.loadURL(url.format({
