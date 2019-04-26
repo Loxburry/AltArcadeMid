@@ -9,6 +9,8 @@ let defeated = 0;
 let timeLimit = 350;
 let timer = 350;
 let over = false;
+let painTime = 0;
+let imgSrc;
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
@@ -41,13 +43,22 @@ class MainScene extends Phaser.Scene {
     timeLimit = 350;
     timer = 350;
     over = false;
+    this.isShaking = false;
+    this.shakeTime = 0;
+    this.shakeIntensity = 0;
+    this.shakeXScale = 0;
+    this.shakeYScale = 0;
+    this.shakeSpeed = 0;
+
     this.didFirstSpawn = false;
     this.graphics = this.add.graphics({
         fillStyle: { color: 0xeeeeee },
         lineStyle: { width: 4, color: 0xffffff },
       });
+    document.body.style.backgroundImage = "url('./img/cave.jpg')";
+    
     this.overlay = document.querySelector('#demon0');
-    // Ever time this scene begins
+    // Ever time this scene begins11
     this.overlay.classList.remove('hidden');
     this.handPromts = []; // an array of objects we can call from later
     this.randomInt = -1;
@@ -109,12 +120,42 @@ class MainScene extends Phaser.Scene {
     }
     }
 
+    startScreenShake(intensity, duration, speed) {
+      this.isShaking = true;
+      this.shakeIntensity = intensity;
+      this.shakeTime = duration;
+      this.shakeSpeed = speed;
+  
+      this.shakeXScale = Math.random() > 0.5 ? 1 : -1;
+      this.shakeYScale = Math.random() > 0.5 ? 1 : -1;
+    }
+
+    updateScreenShake(deltaTime) {
+      if (this.isShaking) {
+        this.shakeTime -= deltaTime;
+  
+        const shakeAmount = this.shakeTime / this.shakeSpeed;
+        this.game.canvas.style.left = window.innerWidth / 2 - 400 + (Math.cos(shakeAmount) * this.shakeXScale * this.shakeIntensity) + "px";
+        this.game.canvas.style.top = window.innerHeight / 2 - 300 + (Math.sin(shakeAmount) * this.shakeYScale * this.shakeIntensity) + "px";
+        console.log(Math.cos(shakeAmount) * this.shakeXScale * this.shakeIntensity);
+  
+        if (this.shakeTime < 0) {
+          this.isShaking = false;
+          this.game.canvas.style.left = 'calc(50vw - 400px)';
+          this.game.canvas.style.top = 'calc(50vh - 300px)';
+        }
+  
+      }
+    }
+
 onSerialMessage(msg){
   //console.log(msg);
   this.serialMsg = msg;
 }
 
  update(_, deltaTime) {
+   this.updateScreenShake(deltaTime);
+
     const handValues = this.serialMsg.split(':'); // update the position of the fingers
     // recieves info back from Arduino in this format 0:0:0:0-
     // 1 = finger down
@@ -217,7 +258,7 @@ onSerialMessage(msg){
     }
 
     //timer change over time
-    timer -= deltaTime/30; // 100 is the rate of timer drain
+    timer -= deltaTime/22; // 100 is the rate of timer drain
     if(timer <= 0){ // time is up
       over = true; // hide the timer
       this.overlay.classList.add('hidden'); // hide current demon
@@ -230,10 +271,55 @@ onSerialMessage(msg){
       }
       this.scene.start('GameOver');
     }
-
+    this.painTime -= deltaTime;
+    if(this.painTime <= 0){
+      if(defeated == 0){
+        this.imgSrc = "mellow.png"
+      }
+      if(defeated == 1){
+        this.imgSrc = "fish.png"
+      }
+      if(defeated == 2){
+        this.imgSrc = "oni.png"
+      }
+      if(defeated == 3){
+        this.imgSrc = "red.png"
+      }
+      if(defeated == 4){
+        this.imgSrc = "octo.png"
+      }
+      if(defeated == 5){
+        this.imgSrc = "yerBoi.png"
+      }
+      this.overlay.querySelector('img').src = "./img/"+this.imgSrc;
+    }
     this.handPromts.forEach((b) => { b.draw(this.graphics); }); // not sure if I need this
     if(success == 4){ // finished all the prompts, ignite a candle!
       candel++; // change for debugging
+      this.startScreenShake(5, 1000, 50);
+      this.painTime = 100;
+      if(this.painTime > 0){
+        if(defeated == 0){
+          this.imgSrc = "mellowHurt.png"
+        }
+        if(defeated == 1){
+          this.imgSrc = "fishHurt.png"
+        }
+        if(defeated == 2){
+          this.imgSrc = "oniHurt.png"
+        }
+        if(defeated == 3){
+          this.imgSrc = "redHurt.png"
+        }
+        if(defeated == 4){
+          this.imgSrc = "octoHurt.png"
+        }
+        if(defeated == 5){
+          this.imgSrc = "yerBoiHurt.png"
+        }
+        this.overlay.querySelector('img').src = "./img/"+this.imgSrc;
+      }
+
       if(candel == 1){
         this.sound.play('candle', {volume: 0.8}); // sound feed back
         this.c2 = document.querySelector('#candel2');
@@ -296,10 +382,8 @@ onSerialMessage(msg){
           this.sound.play('octoDefeat', {volume: 1.5});
         }
         if(defeated == 5){ // Willie
-          this.sound.play('willieDefeat', {volume: 2});
+          this.sound.play('willieDefeat', {volume: 2.2});
         }
-        // hurt animation
-        // figure out screen shake
         defeated++; // change for debugging
         over = false; // show timer
         candel = 0; // reset candle progress

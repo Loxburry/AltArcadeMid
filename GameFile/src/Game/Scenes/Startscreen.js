@@ -28,6 +28,7 @@ class StartScreen extends Phaser.Scene {
    this.wasMiddleLastFrameDown = false;
    this.wasRingLastFrameDown = false;
    this.wasPinkyLastFameDown = false;
+   document.body.style.backgroundImage = "url('./img/cave.jpg')";
    }
 
    onSerialMessage(msg){

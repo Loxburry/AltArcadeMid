@@ -10,7 +10,8 @@ const phaserConfig = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
-  scene: [StartScreen, MainScene, GameOver, GameWin]
+  scene: [StartScreen, MainScene, GameOver, GameWin],
+  render: { transparent: true }
 };
 
 
@@ -42,6 +43,8 @@ const GameManager = {
                  // Glove serial number: 5&350590a7&0&5
           // Willies' Uno serial number: 557353233353518091A2
     game = new Phaser.Game(phaserConfig);
+
+    game.canvas.classList.add('shake-enabled');
   },
 };
 
