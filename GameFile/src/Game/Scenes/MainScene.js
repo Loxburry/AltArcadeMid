@@ -58,17 +58,17 @@ class MainScene extends Phaser.Scene {
     document.body.style.backgroundImage = "url('./img/cave.jpg')";
     
     this.overlay = document.querySelector('#demon0');
-    // Ever time this scene begins11
+    // Ever time this scene begins
     this.overlay.classList.remove('hidden');
     this.handPromts = []; // an array of objects we can call from later
     this.randomInt = -1;
     this.prev = -1;
     this.first;
     for(let i = 0; i < 4; i++) { // create 4 promts on screen at a time
-        this.randomInt = getRandomInt(12);
+        this.randomInt = getRandomInt(10);
         while(this.randomInt == this.prev || (i == 0 && this.randomInt == 0) || (i== 3 && this.randomInt == this.first)){ 
         // can't repeat the last hand gesture, can't have the first gesture be a point, can't have the last gesture be the same as the first
-        this.randomInt = getRandomInt(12);
+        this.randomInt = getRandomInt(10);
         }
         if(i == 0){
           this.first = this.randomInt;
@@ -100,19 +100,19 @@ class MainScene extends Phaser.Scene {
       if(this.randomInt == 7){
         currentPrompt.querySelector('img').src =  "./img/0110.png";
       }
+      // if(this.randomInt == 8){
+      //   currentPrompt.querySelector('img').src =  "./img/0101.png";
+      // }
       if(this.randomInt == 8){
-        currentPrompt.querySelector('img').src =  "./img/0101.png";
-      }
-      if(this.randomInt == 9){
         currentPrompt.querySelector('img').src =  "./img/0011.png";
       }
-      if(this.randomInt == 10){
+      if(this.randomInt == 9){
         currentPrompt.querySelector('img').src =  "./img/1110.png";
       }
-      if(this.randomInt == 11){
-        currentPrompt.querySelector('img').src =  "./img/1101.png";
-      }
-      if(this.randomInt == 12){
+      // if(this.randomInt == 11){
+      //   currentPrompt.querySelector('img').src =  "./img/1101.png";
+      // }
+      if(this.randomInt == 10){
         currentPrompt.querySelector('img').src =  "./img/1011.png";
       }
       currentPrompt.classList.remove('hidden'); // make the prompt visable
@@ -195,23 +195,26 @@ onSerialMessage(msg){
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
         success++;
-      } else if(this.handPromts[success].position == 8 && handValues[0] == 0 && handValues[1] == 1 && handValues[2] == 0 && handValues[3] == 1){ 
+      }
+      // else if(this.handPromts[success].position == 8 && handValues[0] == 0 && handValues[1] == 1 && handValues[2] == 0 && handValues[3] == 1){ 
+      //   this.handPromts[success].deactivate();
+      //   document.getElementById("prompt"+success).classList.add('hidden');
+      //   success++;} 
+      else if(this.handPromts[success].position == 8 && handValues[0] == 0 && handValues[1] == 0 && handValues[2] == 1 && handValues[3] == 1){ 
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
         success++;
-      } else if(this.handPromts[success].position == 9 && handValues[0] == 0 && handValues[1] == 0 && handValues[2] == 1 && handValues[3] == 1){ 
+      } else if(this.handPromts[success].position == 9 && handValues[0] == 1 && handValues[1] == 1 && handValues[2] == 1 && handValues[3] == 0){ 
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
         success++;
-      } else if(this.handPromts[success].position == 10 && handValues[0] == 1 && handValues[1] == 1 && handValues[2] == 1 && handValues[3] == 0){ 
-        this.handPromts[success].deactivate();
-        document.getElementById("prompt"+success).classList.add('hidden');
-        success++;
-      } else if(this.handPromts[success].position == 11 && handValues[0] == 1 && handValues[1] == 1 && handValues[2] == 0 && handValues[3] == 1){ 
-        this.handPromts[success].deactivate();
-        document.getElementById("prompt"+success).classList.add('hidden');
-        success++;
-      } else if(this.handPromts[success].position == 12 && handValues[0] == 1 && handValues[1] == 0 && handValues[2] == 1 && handValues[3] == 1){ 
+      } 
+      // else if(this.handPromts[success].position == 11 && handValues[0] == 1 && handValues[1] == 1 && handValues[2] == 0 && handValues[3] == 1){ 
+      //   this.handPromts[success].deactivate();
+      //   document.getElementById("prompt"+success).classList.add('hidden');
+      //   success++;
+      // } 
+      else if(this.handPromts[success].position == 10 && handValues[0] == 1 && handValues[1] == 0 && handValues[2] == 1 && handValues[3] == 1){ 
         this.handPromts[success].deactivate();
         document.getElementById("prompt"+success).classList.add('hidden');
         success++;
@@ -402,10 +405,10 @@ onSerialMessage(msg){
           this.prev = -1;
           this.first;
           for(let i = 0; i < 4; i++) { // create 4 promts on screen at a time
-              this.randomInt = getRandomInt(12);
+              this.randomInt = getRandomInt(10);
               while(this.randomInt == this.prev || (i == 0 && this.randomInt == 0) || (i== 3 && this.randomInt == this.first)){ 
               // can't repeat the last hand gesture, can't have the first gesture be a point, can't have the last gesture be the same as the first
-              this.randomInt = getRandomInt(12);
+              this.randomInt = getRandomInt(10);
               }
               if(i == 0){
                 this.first = this.randomInt;
@@ -437,19 +440,19 @@ onSerialMessage(msg){
             if(this.randomInt == 7){
               currentPrompt.querySelector('img').src =  "./img/0110.png";
             }
+            // if(this.randomInt == 8){ // bad
+            //   currentPrompt.querySelector('img').src =  "./img/0101.png";
+            // }
             if(this.randomInt == 8){
-              currentPrompt.querySelector('img').src =  "./img/0101.png";
-            }
-            if(this.randomInt == 9){
               currentPrompt.querySelector('img').src =  "./img/0011.png";
             }
-            if(this.randomInt == 10){
+            if(this.randomInt == 9){
               currentPrompt.querySelector('img').src =  "./img/1110.png";
             }
-            if(this.randomInt == 11){
-              currentPrompt.querySelector('img').src =  "./img/1101.png";
-            }
-            if(this.randomInt == 12){
+            // if(this.randomInt == 11){ // bad
+            //   currentPrompt.querySelector('img').src =  "./img/1101.png";
+            // }
+            if(this.randomInt == 10){
               currentPrompt.querySelector('img').src =  "./img/1011.png";
             }
             currentPrompt.classList.remove('hidden'); // make the prompt visable
